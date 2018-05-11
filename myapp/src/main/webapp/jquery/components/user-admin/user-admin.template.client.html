@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
-<title>Insert title here</title>
+<title>User admin panel</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+    </script>
+  <script src="user-admin.controller.client.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -18,31 +25,26 @@
         <th></th>
       </tr>
       <tr>
-        <th><input class="form-control" placeholder="jdoe"/></th>
-        <th><input class="form-control" type="password"/></th>
-        <th><input class="form-control" placeholder="John"/></th>
-        <th><input class="form-control" placeholder="Doe"/></th>
-        <th><button class="btn btn-success">Create</button></th>
+        <th><input id ="username" class="form-control"  placeholder="username"/></th>
+        <th><input id="password" class="form-control" type="password"/></th>
+        <th><input id="firstname" class="form-control" placeholder="firstname"/></th>
+        <th><input id="lastname" class="form-control" placeholder="lastname"/></th>
+        <th><button id="create" class="btn btn-success">Create</button></th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>alice</td>
-        <td>****</td>
-        <td>Alice</td>
-        <td>Wonderland</td>
+    <tbody id = "tbody">
+      <tr class="template">
+        <td id="usernametemp">alice</td>
+        <td id="passwordtemp">****</td>
+        <td id="firstnametemp">Alice</td>
+        <td id="lastnametemp">Wonderland</td>
         <th><button class="btn btn-danger">Delete</button></th>
       </tr>
-      <tr>
-        <td>bob</td>
-        <td>****</td>
-        <td>Bob</td>
-        <td>Hope</td>
-        <th><button class="btn btn-danger">Delete</button></th>
-      </tr>
+
     </tbody>
     <tfoot></tfoot>
   </table>
   </div>
+
 </body>
 </html>
