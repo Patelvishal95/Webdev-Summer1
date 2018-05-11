@@ -5,8 +5,8 @@
     var template;
     var tbody;
     function afterhtmlloads() {
-        tbody = $('#tbody');
-        template = $('.template');
+        tbody = $('.wbdv-tbody');
+        template = $('.wbdv-template');
 
         $("#create").click(createUser);
         findAllUsers();
@@ -17,10 +17,11 @@
     }
     function createUser(){
             var user = {
-                firstName: $('#firstname').val(),
-                lastName: $('#lastname').val(),
-                password: $('#password').val(),
-                username: $('#username').val()
+                firstName: $('#firstNameFld').val(),
+                lastName: $('#lastNameFld').val(),
+                password: $('#passwordFld').val(),
+                role: $('#roleFld').val(),
+                username: $('#usernameFld').val()
             };
             userService.createUser(user).then(findAllUsers);
     }
@@ -31,15 +32,14 @@
 
             var user = users[i];
             var clone = template.clone();
-            console.log(user.username);
-            clone.find('#usernametemp')
+            clone.find('.wbdv-username')
                 .html(user.username);
-            clone.find('#firstnametemp')
+            clone.find('.wbdv-first-name')
                 .html(user.firstName);
-            clone.find('#lastnametemp')
+            clone.find('.wbdv-last-name')
                 .html(user.lastName);
-            clone.find('#passwordtemp')
-                .html(user.password);
+            clone.find('.wbdv-role')
+                .html(user.role);
 
             tbody.append(clone);
         }
