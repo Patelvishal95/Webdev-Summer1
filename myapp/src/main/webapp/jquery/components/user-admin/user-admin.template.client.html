@@ -4,11 +4,17 @@
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
 <title>User admin panel</title>
+    <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="user-admin.style.client.css" rel="stylesheet" />
     <script
             src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous">
     </script>
+    <script src="../services/user.service.client.js"></script>
   <script src="user-admin.controller.client.js"></script>
 
 </head>
@@ -17,31 +23,53 @@
   <h1>User Admin</h1>
   <table class="table">
     <thead>
-      <tr>
+    <tr>
         <th>Username</th>
         <th>Password</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th></th>
-      </tr>
-      <tr>
-        <th><input id ="username" class="form-control"  placeholder="username"/></th>
-        <th><input id="password" class="form-control" type="password"/></th>
-        <th><input id="firstname" class="form-control" placeholder="firstname"/></th>
-        <th><input id="lastname" class="form-control" placeholder="lastname"/></th>
-        <th><button id="create" class="btn btn-success">Create</button></th>
-      </tr>
-    </thead>
-    <tbody id = "tbody">
-      <tr class="template">
-        <td id="usernametemp">alice</td>
-        <td id="passwordtemp">****</td>
-        <td id="firstnametemp">Alice</td>
-        <td id="lastnametemp">Wonderland</td>
-        <th><button class="btn btn-danger">Delete</button></th>
-      </tr>
+        <th>Role</th>
+        <th>&nbsp;</th>
+    </tr>
 
-    </tbody>
+    <tr class="wbdv-form">
+        <td><input id="usernameFld" class="form-control"
+                   placeholder="Username" /></td>
+        <td><input id="passwordFld" class="form-control"
+                   placeholder="Password" /></td>
+        <td><input id="firstNameFld" class="form-control"
+                   placeholder="First Name" /></td>
+        <td><input id="lastNameFld" class="form-control"
+                   placeholder="Last Name" /></td>
+        <td><select id="roleFld" class="form-control">
+            <option value="FACULTY">Faculty</option>
+            <option value="STUDENT">Student</option>
+        </select></td>
+        <td><span class="float-right" style="white-space: nowrap">
+      <i class="fa-2x fa fa-search wbdv-search"></i> <i
+                class="fa-2x fa fa-plus wbdv-create"></i> <i
+                class="fa-2x fa fa-check wbdv-update"></i>
+  </span></td>
+    </tr>
+
+    </thead>
+      <tbody class="wbdv-tbody">
+      <tr class="wbdv-template wbdv-user wbdv-hidden">
+          <td class="wbdv-username">ada</td>
+          <td>&nbsp;</td>
+          <td class="wbdv-first-name">Ada</td>
+          <td class="wbdv-last-name">Lovelace</td>
+          <td class="wbdv-role">FACULTY</td>
+          <td class="wbdv-actions">
+        <span class="float-right">
+          <i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
+          <i id="wbdv-edit" class="fa-2x fa fa-pencil wbdv-edit"></i>
+        </span>
+          </td>
+      </tr>
+      </tbody>
+  </table>
+
     <tfoot></tfoot>
   </table>
   </div>
