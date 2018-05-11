@@ -32,14 +32,12 @@
             });
 
 
-
-    }
-    function renderusers(){
         var promise = fetch('/api/user');
         promise.then(function (response){
             return response.json();
         }).then(renderusers);
-
+    }
+    function renderusers(users){
         template = $('.template');
 
         //console.log(template.find('.username').toString());
