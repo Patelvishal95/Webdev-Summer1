@@ -27,6 +27,7 @@ public class UserService {
     public void deleteUser(@PathVariable("userId")int userId){
         repository.deleteById(userId);
     }
+
     @PutMapping("/api/user/{userId}")
     public User updateUser(@PathVariable("userId") int userId,@RequestBody User newUser){
         Optional<User> data = repository.findById(userId);
@@ -36,6 +37,14 @@ public class UserService {
             user.SetUser(newUser);
             repository.save(user);
             return user;
+        }
+        return null;
+    }
+    @GetMapping("/api/user/{userId}")
+    public User findUserById(@PathVariable("userId") int userId) {
+        Optional<User> data = repository.findById(userId);
+        if(data.isPresent()) {
+            return data.get();
         }
         return null;
     }
