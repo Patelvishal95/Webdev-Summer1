@@ -1,10 +1,13 @@
-function User(username, password, firstName, lastName, role) {
+function User(username, password, firstName, lastName, role,date) {
     this.username = username;
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
     this.role = role;
+    this.date = date;
 
+    this.setDate = setDate;
+    this.getDate = getDate;
     this.setUsername = setUsername;
     this.getUsername = getUsername;
     this.setpassword = setpassword;
@@ -15,6 +18,13 @@ function User(username, password, firstName, lastName, role) {
     this.getlastname = getlastname;
     this.setrole = setrole;
     this.getrole = getrole;
+
+    function setDate(date) {
+        this.date = date;
+    }
+    function getDate() {
+        return this.date;
+    }
 
     function setrole(role) {
         this.role = role;
