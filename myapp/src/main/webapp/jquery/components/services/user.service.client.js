@@ -3,12 +3,12 @@ function UserServiceClient() {
     this.findAllUsers = findAllUsers;
     //this.findUserById = findUserById;
     this.deleteUser = deleteUser;
-    //this.updateUser = updateUser;
+    this.updateUser = updateUser;
     this.url = '/api/user';
-    //var self = this;
+    var self = this;
 
 function createUser(user){
-    return fetch(this.url,{
+    return fetch(self.url,{
         method: "post",
         headers: {
             'Accept': 'application/json',
@@ -20,7 +20,7 @@ function createUser(user){
 
 }
     function findAllUsers (){
-        return fetch(this.url)
+        return fetch(self.url)
             .then(function (response){
                 return response.json();
             });
@@ -28,9 +28,25 @@ function createUser(user){
 
     function deleteUser(userid){
     console.log(userid);
-    return fetch(this.url+'/'+userid,{
+    return fetch(self.url+'/'+userid,{
         method : "delete"
 
     });
+    }
+    function updateUser(userId, user) {
+        return fetch(self.url + '/' + userId, {
+            method: 'put',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(function(response){
+                if(response.bodyUsed) {
+                    return response.json();
+                } else {
+                    return null;
+                }
+            });
     }
 }

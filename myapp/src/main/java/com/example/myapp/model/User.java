@@ -16,6 +16,7 @@ public class User {
     private String role;
     private Date dateOfBirth;
 
+
     public String getEmail() {
         return email;
     }
@@ -87,5 +88,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void SetUser(User newUser) {
+        this.username=newUser.getUsername();
+        this.password=newUser.getPassword();
+        this.firstName=newUser.getFirstName();
+        this.lastName=newUser.getLastName();
+         this.role=newUser.getRole();
     }
 }

@@ -7,7 +7,6 @@
     function main() {
         tbody = $('.wbdv-tbody');
         template = $('.wbdv-template');
-
         $(".wbdv-create").click(createUser);
         $(".wbdv-update").click(updateUser);
         findAllUsers();
@@ -15,7 +14,15 @@
 
     function updateUser (){
         console.log($(".wbdv-update").attr('id'));
+        var user = {
+            firstName: $('#firstNameFld').val(),
+            lastName: $('#lastNameFld').val(),
+            password: $('#passwordFld').val(),
+            role: $('#roleFld').val(),
+            username: $('#usernameFld').val()
 
+        };
+        userService.updateUser($(".wbdv-update").attr('id'),user).then(findAllUsers);
     }
     function findAllUsers(){
         userService.findAllUsers().then(renderusers);
@@ -66,7 +73,6 @@
             .deleteUser(userId)
             .then(findAllUsers);
     }
-
     function editUser(event) {
         var editBtn = $(event.currentTarget);
         var maindiv = editBtn.parent().parent().parent();

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserService {
@@ -25,5 +26,17 @@ public class UserService {
     @DeleteMapping("/api/user/{userId}")
     public void deleteUser(@PathVariable("userId")int userId){
         repository.deleteById(userId);
+    }
+    @PutMapping("/api/user/{userId}")
+    public User updateUser(@PathVariable("userId") int userId,@RequestBody User newUser){
+        Optional<User> data = repository.findById(userId);
+        if(data.isPresent()) {
+            User user = data.get();
+            System.out.println(user);
+            user.SetUser(newUser);
+            repository.save(user);
+            return user;
+        }
+        return null;
     }
 }
