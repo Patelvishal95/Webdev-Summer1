@@ -3,7 +3,7 @@
     var $template;
     var $tbody;
     var $usernameFld, $passwordFld;
-    var $removeBtn, $editBtn, $createBtn,$updateBtn;
+    var $editBtn, $createBtn,$updateBtn;
     var $firstNameFld, $lastNameFld ,$roleFld;
 
     $(main);
@@ -35,7 +35,6 @@
         userService.findAllUsers().then(renderusers);
     }
     function createUser(){
-
         var user = new User($usernameFld.val(),$passwordFld.val(),$firstNameFld.val(),$lastNameFld.val(),$roleFld.val());
             userService.createUser(user).then(findAllUsers);
     }
@@ -72,27 +71,19 @@
             .deleteUser(userId)
             .then(findAllUsers);
     }
-    //this function is when pencil is clicked
-    //it populates the first row and sets id
-    //actual edit happens when right check button is pressed in that row
     function selectUser(event) {
         var editBtn = $(event.currentTarget);
         var maindiv = editBtn.parent().parent().parent();
         $updateBtn.attr('id',maindiv.attr('id'));
-        var user = new User($('.wbdv-username',maindiv).html(),"password",
-            $('.wbdv-first-name',maindiv).html(),
-            $('.wbdv-last-name',maindiv).html(),
-            $('.wbdv-role',maindiv).html());
-
-        renderUser(user);
+        findUserById(maindiv.attr('id'));
 
     }
     function renderUser(user){
-        $firstNameFld.val(user.getfirstname());
-        $lastNameFld.val(user.getlastname());
-        $passwordFld.val(user.getpassword());
-        $roleFld.val(user.getrole());
-        $usernameFld.val(user.getUsername());
+        $firstNameFld.val(user.firstName);
+        $lastNameFld.val(user.lastName);
+        $passwordFld.val(user.password);
+        $roleFld.val(user.role);
+        $usernameFld.val(user.username);
     }
 
 
