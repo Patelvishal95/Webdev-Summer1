@@ -91,10 +91,19 @@ public class User {
     }
 
     public void SetUser(User newUser) {
-        this.username=newUser.getUsername();
-        this.password=newUser.getPassword();
-        this.firstName=newUser.getFirstName();
-        this.lastName=newUser.getLastName();
-         this.role=newUser.getRole();
+        this.username=newUser.username != null?newUser.username:this.username;
+
+        this.firstName=newUser.firstName != null?newUser.firstName:this.firstName;
+        this.lastName=newUser.lastName != null?newUser.lastName:this.lastName;
+        this.password=newUser.password != null?newUser.password:this.password;
+         this.dateOfBirth=newUser.dateOfBirth != null?newUser.dateOfBirth:this.dateOfBirth;
+         this.phone=newUser.phone != null?newUser.phone:this.phone;
+        this.email=newUser.email != null?newUser.email:this.email;
+        this.role=newUser.role != null?newUser.role:this.role;
+    }
+
+    @Override
+    public String toString() {
+        return getUsername()+" "+getFirstName()+" "+getLastName()+" "+getPassword()+" "+getDateOfBirth()+" "+getPassword()+" "+getEmail()+" "+getRole();
     }
 }

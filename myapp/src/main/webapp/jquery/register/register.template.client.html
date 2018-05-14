@@ -18,19 +18,27 @@
 </head>
 <body >
 <div class="container">
-<form class="form-signun">
     <h1>Sign Up</h1>
-    <div class="input-group">
-        <label >Username:</label>
-        <input class='form-control' id="usernameFld"/>
+    <form>
+        <div class="form-group row">
+            <label for="usernameFld" class="col-sm-2 col-form-label">
+                Username:</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="usernameFld"/>
+            </div>
+        </div>
+
+    <div class="form-group row">
+        <label for="passwordFld" class="col-sm-2 col-form-label">
+            Password:</label>
+        <div class="col-sm-10">
+            <input class='form-control'id="passwordFld" type="password"/></div>
     </div>
-    <div class="input-group">
-        <label class="'lead left">Password:</label>
-        <input class='form-control'id="passwordFld" type="password"/>
-    </div>
-    <div class="input-group">
-        <label>Verify Password:</label>
-        <input class='form-control' id="verifyPasswordFld" type="password"/>
+    <div class="form-group row">
+        <label for="verifyPasswordFld" class="col-sm-2 col-form-label">
+            Verify Password:</label>
+        <div class="col-sm-10">
+            <input class='form-control' id="verifyPasswordFld" type="password"/></div>
     </div>
 </form>
 <button class="btn btn-lg btn-primary btn-block "  id="registerBtn">Register</button>

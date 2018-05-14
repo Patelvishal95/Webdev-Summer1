@@ -5,7 +5,6 @@
     $(main);
 
     function main() {
-        console.log("in main");
         $usernameFld = $('#usernameFld');
         $passwordFld = $('#passwordFld');
         $verifyPasswordFld=$('#verifyPasswordFld');
@@ -14,13 +13,26 @@
         $registerBtn.click(register);
     }
     function register() {
-        if($passwordFld.val()===$verifyPasswordFld.val()) {
-            var user = new User($usernameFld, $passwordFld);
-            console.log(user);
-            userService.createUser(user);
+        if ($passwordFld.val() === $verifyPasswordFld.val()) {
+            var userpromise = userService.register(new User($usernameFld.val(), $passwordFld.val()));
+           userpromise.then(function (res){
+               console.log("returned");
+               console.log(res.json().then(function (value) { printstatus(value)}));
+           })
+        }
+        else
+        {
+            alert("Password does not match");
+        }
+
+    }
+
+    function printstatus(user){
+        if (user.username===null){
+            alert("Username is already taken");
         }
         else{
-            console.log("passwords dont match");
+            window.location.replace("../components/profile/profile.template.client.html?id="+user.id);
         }
     }
 })();
