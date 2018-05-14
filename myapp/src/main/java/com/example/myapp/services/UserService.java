@@ -2,9 +2,14 @@ package com.example.myapp.services;
 
 import com.example.myapp.model.User;
 import com.example.myapp.repositories.UserRepository;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.text.html.HTMLDocument;
 import java.util.Iterator;
 import java.util.List;
@@ -16,11 +21,18 @@ public class UserService {
     UserRepository repository;
 
     @PostMapping("/api/login")
-    public User login(@RequestBody User user) {
+    public User login(@RequestBody User user, HttpServletResponse response)  {
+
         Iterable<User> users = repository.findUserByUsernameAndPassword(user.getUsername(),user.getPassword());
         Iterator usersitr = users.iterator();
-        if(usersitr.hasNext()){return (User)usersitr.next();}
-        else{return null;}
+        if(usersitr.hasNext()){
+            User toret = (User)usersitr.next();
+            return toret;
+        }
+        else{
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
+        return new User();
+        }
     }
 
     @PostMapping("/api/register")
@@ -57,14 +69,10 @@ public class UserService {
 
     @PutMapping("/api/user/{userId}")
     public User updateUser(@PathVariable("userId") int userId,@RequestBody User newUser){
-        System.out.println("in update user");
         Optional<User> data = repository.findById(userId);
         if(data.isPresent()) {
-            System.out.println(newUser.toString());
             User user = data.get();
-            System.out.println(user.toString());
             user.SetUser(newUser);
-            System.out.println(user.toString());
             repository.save(user);
             return user;
         }
@@ -86,4 +94,5 @@ public class UserService {
         }
         return null;
     }
+
 }

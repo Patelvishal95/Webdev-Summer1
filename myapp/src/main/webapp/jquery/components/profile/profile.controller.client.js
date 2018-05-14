@@ -34,7 +34,7 @@ var user = {
     dateOfBirth:$dobFld.val(),
     username:$userNameFld.val(),
     role:$roleFld.val()
-}
+};
         // new User($userNameFld.val(),'','','',$roleFld.val(),$dobFld.val(),$phoneFld.val())
         userService
             .updateUser(id, user);
