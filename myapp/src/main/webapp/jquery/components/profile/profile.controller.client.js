@@ -37,7 +37,7 @@ var user = {
 };
         // new User($userNameFld.val(),'','','',$roleFld.val(),$dobFld.val(),$phoneFld.val())
         userService
-            .updateUser(id, user);
+            .updateUser(id, user).then(function (value) { console.log(value); });
     }
 
     function findUserById(userId) {
@@ -50,7 +50,8 @@ var user = {
         console.log(user);
         $userNameFld.val(user.username);
         $roleFld.val(user.role);
-        $dobFld.val(user.date);
+        $emailFld.val(user.email);
+        $dobFld.val(user.dateOfBirth);
         $phoneFld.val(user.phone);
     }
 

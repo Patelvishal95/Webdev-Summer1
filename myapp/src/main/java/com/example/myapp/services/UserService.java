@@ -30,7 +30,13 @@ public class UserService {
             return toret;
         }
         else{
-            response.setStatus(HttpServletResponse.SC_CONFLICT);
+            Iterable<User> byusername = repository.findUserByUsername(user.getUsername());
+            if(byusername.iterator().hasNext()){
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            }
+            else{
+
+            response.setStatus(HttpServletResponse.SC_CONFLICT);}
         return new User();
         }
     }
