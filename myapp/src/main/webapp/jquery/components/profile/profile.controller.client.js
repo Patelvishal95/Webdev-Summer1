@@ -27,11 +27,10 @@
     }
     function updateUser() {
 
-console.log("herer");
-console.log($dobFld.val());
 var user = {
     phone:$phoneFld.val(),
     dateOfBirth:$dobFld.val(),
+    email:$emailFld.val(),
     username:$userNameFld.val(),
     role:$roleFld.val()
 };
@@ -51,7 +50,9 @@ var user = {
         $userNameFld.val(user.username);
         $roleFld.val(user.role);
         $emailFld.val(user.email);
-        $dobFld.val(user.dateOfBirth);
+        var d = new Date(user.dateOfBirth);
+        d=d.substring(0,d.indexOf('T'));
+        $dobFld.val(d);
         $phoneFld.val(user.phone);
     }
 
