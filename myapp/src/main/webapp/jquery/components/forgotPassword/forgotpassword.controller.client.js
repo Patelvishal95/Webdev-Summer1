@@ -10,6 +10,7 @@
     }
     function forgotpassword()
     {
-        console.log("in username field");
-    console.log($usernameFld.val());}
+    console.log($usernameFld.val());
+        window.open('mailto:test@example.com');
+    }
 }());
