@@ -36,7 +36,10 @@ var user = {
 };
         // new User($userNameFld.val(),'','','',$roleFld.val(),$dobFld.val(),$phoneFld.val())
         userService
-            .updateUser(id, user).then(function (value) { console.log(value); });
+            .updateUser(id, user).then(function (value) { value.json().then(function (value1) {
+                console.log(value1);
+            if(value1.id!=''){alert("Update sucessfull");}
+            }) });
     }
 
     function findUserById(userId) {

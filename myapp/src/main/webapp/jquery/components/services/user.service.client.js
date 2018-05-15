@@ -78,14 +78,7 @@ function createUser(user){
             headers: {
                 'content-type': 'application/json'
             }
-        })
-            .then(function(response){
-                if(response.bodyUsed) {
-                    return response.json();
-                } else {
-                    return null;
-                }
-            });
+        });
     }
     function findUserById(userId) {
         return fetch(self.url + '/' + userId)
