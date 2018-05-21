@@ -1,12 +1,11 @@
 package com.example.myapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.List;
+
 @Entity
 public class Module {
     @Id
@@ -16,6 +15,17 @@ public class Module {
     @ManyToOne
     @JsonIgnore
     private Course course;
+    @OneToMany
+    private List<Lesson> lesson;
+
+    public List<Lesson> getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(List<Lesson> lesson) {
+        this.lesson = lesson;
+    }
+
     public int getId() {
         return id;
     }
