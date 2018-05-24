@@ -4,13 +4,7 @@ package com.example.myapp.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 public class Course {
@@ -18,12 +12,18 @@ public class Course {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String title;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date modified;
-    @OneToMany(mappedBy="course")
+
+    @OneToMany(mappedBy="course",cascade = CascadeType.ALL)
     private List<Module> modules;
+
+
+
     public int getId() {
         return id;
     }

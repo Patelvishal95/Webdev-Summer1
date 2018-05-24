@@ -6,6 +6,8 @@ import com.example.myapp.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000",maxAge = 3600)
 @RequestMapping("/api/course")
@@ -24,6 +26,18 @@ public class CourseServices {
     @DeleteMapping("/{Id}")
     public void delete(@PathVariable("Id")int Id){
         courseRepository.deleteById(Id);
+    }
+
+    @GetMapping("/{courseId}")
+    public Course findCourseById(@PathVariable("courseId")int Id){
+        Optional<Course> data = courseRepository.findById(Id);
+        if(data.isPresent()) {
+            Course course = data.get();
+        return course;
+        }
+        else {
+            return new Course();
+        }
     }
 
 }

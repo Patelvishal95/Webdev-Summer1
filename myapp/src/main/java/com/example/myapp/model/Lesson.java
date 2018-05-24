@@ -10,6 +10,7 @@ public class Lesson {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String title;
+
     @ManyToOne
     @JsonIgnore
     private Module module;

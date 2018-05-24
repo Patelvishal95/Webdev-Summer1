@@ -12,10 +12,13 @@ public class Module {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String title;
+
     @ManyToOne
     @JsonIgnore
     private Course course;
-    @OneToMany
+
+    @OneToMany(mappedBy="module" ,cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Lesson> lesson;
 
     public List<Lesson> getLesson() {
