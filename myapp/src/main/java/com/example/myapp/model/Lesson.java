@@ -3,6 +3,7 @@ package com.example.myapp.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Lesson {
@@ -14,6 +15,18 @@ public class Lesson {
     @ManyToOne
     @JsonIgnore
     private Module module;
+
+    @OneToMany(mappedBy="lesson" )
+    @JsonIgnore
+    private List<Widget> widgets;
+
+    public List<Widget> getWidgets() {
+        return widgets;
+    }
+
+    public void setWidgets(List<Widget> widgets) {
+        this.widgets = widgets;
+    }
 
     public int getId() {
         return id;

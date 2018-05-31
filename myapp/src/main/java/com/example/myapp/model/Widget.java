@@ -1,9 +1,8 @@
 package com.example.myapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class Widget {
@@ -19,9 +18,41 @@ public class Widget {
         this.id = id;
     }
 
-    private String name,text,className,style,width,height,href,src,ListType;
+    public Lesson getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+
+    @ManyToOne
+    @JsonIgnore
+    private Lesson lesson;
+
+
+    private String name,text,className,style,width,height,href,src,widgetName;
+    private enum ListTypeenum{Ordered,Unordered};
+    @Enumerated(EnumType.STRING)
+    private ListTypeenum ListType;
     private String[] listItems;
     private Integer size,order1;
+
+    public String getWidgetName() {
+        return widgetName;
+    }
+
+    public void setWidgetName(String widgetName) {
+        this.widgetName = widgetName;
+    }
+
+    public ListTypeenum getListType() {
+        return ListType;
+    }
+
+    public void setListType(ListTypeenum listType) {
+        ListType = listType;
+    }
 
     public String getName() {
         return name;
@@ -87,13 +118,6 @@ public class Widget {
         this.src = src;
     }
 
-    public String getListType() {
-        return ListType;
-    }
-
-    public void setListType(String listType) {
-        ListType = listType;
-    }
 
     public String[] getListItems() {
         return listItems;
